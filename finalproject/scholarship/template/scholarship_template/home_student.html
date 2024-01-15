@@ -1,0 +1,64 @@
+{% extends 'scholarship_template/base.html' %}
+
+{% block contentheader %}
+<header class="border-bottom">
+    <div class="container d-flex py-3 justify-content-center">
+      <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"></div>
+        <ul class="nav nav-pills justify-content-center">
+            <li class="nav-item"><a href="{% url 'home_student' %}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+        </ul>
+        <div class="col-md-3 text-end">
+          <a href="{% url 'login_student' %}" role="button" class="btn btn-outline-secondary me-2" >Log out</a>
+        </div>
+    </div>
+</header>
+{% endblock contentheader %}
+
+{% block contentdetail %}
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Album example</h1>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <p>
+          <a href="{% url 'application_new' %}" class="btn btn-primary my-2">สมัครทุนครั้งแรก</a>
+          <a href="{% url 'application_old' %}" class="btn btn-secondary my-2">เคยสมัครทุนแล้ว</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      
+      <center>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for myScholarshipType in myScholarshipTypeList %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#7f7f7c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ myScholarshipType.scholarname }}</text></svg>
+
+              <div class="card-body">
+                <p class="card-text">{{ myScholarshipType.scholardescr }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group mx-auto">
+                    <button type="button" class="btn btn-sm btn-outline-secondary ">View</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </center>
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+{% endblock contentdetail %}

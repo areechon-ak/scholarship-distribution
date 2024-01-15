@@ -1,0 +1,57 @@
+{% extends 'scholarship_template/base.html' %}
+
+{% block contentheader %}
+<header class="border-bottom">
+    <div class="container d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+        </ul>
+    </div>
+</header>
+{% endblock contentheader %}
+
+{% block contentdetail %}
+
+<style>
+    .form-signin {
+        max-width: 330px !important;
+    }
+</style>
+
+<main class="form-signin w-100 m-auto text-center">
+    <img class="mb-4 mt-5"
+        src="https://surveymonkey-assets.s3.amazonaws.com/survey/186158684/769c82dc-67b6-44d9-afa9-4a3d041a81bb.jpg"
+        alt="cbs logo" width="82" height="67">
+    <h4 class="h4 mb-3 fw-normal"><b>For Committee</b></h4>
+    <h5 class="h5 mb-3 fw-normal">please log in</h5>
+    <form method="POST">
+        {% csrf_token %}
+        <label class="radio-inline mx-3">
+        <input type="radio" name="myRole" value="teacher"checked> Teacher
+        </label>
+        <label class="radio-inline mx-3 mt-3 mb-3">
+        <input type="radio" name="myRole" value="admin"> Admin
+        </label>
+        
+        <div class="form-floating">
+            <input type="text" class="form-control" id="myUsername" name="myUsername" placeholder="Username">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="myPassword" name="myPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+    {% if returnMessage %}
+    <p class="fs-5 text-muted">
+        {{ returnMessage }}
+    </p>
+    {% endif %}
+</main>
+{% endblock contentdetail %}

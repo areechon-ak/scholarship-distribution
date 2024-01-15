@@ -1,0 +1,278 @@
+{% extends 'scholarship_template/base.html' %}
+
+{% block contentheader %}
+<header class="border-bottom">
+    <div class="container d-flex justify-content-center py-3">
+        <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"></div>
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home_student' %}" class="nav-link active" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+        </ul>
+        <div class="col-md-3 text-end">
+            <a href="{% url 'login_student' %}" role="button" class="btn btn-outline-secondary me-2">Log out</a>
+        </div>
+    </div>
+</header>
+{% endblock contentheader %}
+
+{% block contentdetail %}
+<div class="col-md-7 col-lg-8  ml-5 mr-5 m-auto text-center">
+    {% if returnMessage %}
+    <h1 class="h3 mb-3 fw-normal">
+        {{ returnMessage }}
+    </h1>
+    <a class="w-100 btn btn-lg btn-secondary" href="{% url 'home_student' %}"> ไปหน้า Home</a>
+    {% else %}
+    <h4 class="mb-5 mt-5 form-signin w-100 m-auto text-center">กรอกข้อมูลเพื่อขอรับทุนการศึกษา</h4>
+    <form class="needs-validation" novalidate method="POST">
+        {% csrf_token %}
+        <div class="row g-3">
+            <h5 class="mb-3">ส่วนที่ 1 : ข้อมูลนิสิต</h5>
+
+            <div class="col-sm-4">
+                <label for="studentID" class="form-label">รหัสนิสิต</label>
+                <div class="form-control bg-light text-start">{{ getstudentID }}</div>
+                <div class="invalid-feedback">
+                    Valid student id is required.
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="firstName" class="form-label">ชื่อ</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="lastName" class="form-label">นามสกุล</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                <div class="invalid-feedback">
+                    Valid last name is required.
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                <input type="text" class="form-control" id="phone" placeholder="0XXXXXXXXX" name="myPhone" required>
+                <div class="invalid-feedback">
+                    Valid phone number is required.
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="email@email.com"
+                    name="myEmail" required>
+                <div class="invalid-feedback">
+                    Valid email is required.
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="address1" class="form-label">ที่อยู่ปัจจุบัน</label>
+                <input type="text" class="form-control" id="address1" name="currentAddress" required>
+                <div class="invalid-feedback">
+                    Please enter your current address.
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="address2" class="form-label">ที่อยู่ตามทะเบียนบ้าน</label>
+                <input type="text" class="form-control" id="address2" name="idcardAddress" required>
+                <div class="invalid-feedback">
+                    Please enter your address.
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="major" class="form-label">สาขา</label>
+                <select class="form-select" id="major" name="major" required>
+                    <option value="การบัญชี">การบัญชี</option>
+                    <option value="สถิติ-สถิติประยุกต์">สถิติ-สถิติประยุกต์</option>
+                    <option value="สถิติ-สถิติคณิตศาสตร์">สถิติ-สถิติคณิตศาสตร์</option>
+                    <option value="สถิติ-เทคโนโลยีสารสนเทศเพื่อธุรกิจ">สถิติ-เทคโนโลยีสารสนเทศเพื่อธุรกิจ</option>
+                    <option value="สถิติ-ประกันภัย">สถิติ-ประกันภัย</option>
+                    <option value="บริหาร-การตลาด">บริหาร-การตลาด</option>
+                    <option value="บริหาร-การธนาคารและการเงิน">บริหาร-การธนาคารและการเงิน</option>
+                    <option value="บริหาร-ระบบสารสนเทศทางการจัดการ">บริหาร-ระบบสารสนเทศทางการจัดการ</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid major.
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <label for="year" class="form-label">ชั้นปี</label>
+                <select class="form-select" id="year" name="year" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid college year.
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="semester" class="form-label">ภาคเรียนและปีการศึกษา</label>
+                <input type="text" class="form-control" id="semester" placeholder="X/25XX" name="semester" required>
+                <div class="invalid-feedback">
+                    Please provide a valid semester.
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <label for="gpax" class="form-label">GPAX</label>
+                <input type="text" class="form-control" id="gpax" placeholder="X.XX" name="gpax" required>
+                <div class="invalid-feedback">
+                    Valid gpax is required.
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <label for="model" class="form-label">รุ่นโทรศัพท์มือถือ</label>
+                <input type="text" class="form-control" id="model" placeholder="" name="model" required>
+                <div class="invalid-feedback">
+                    Valid mobile phone model is required.
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <h5 class="mb-3 mt-3">ส่วนที่ 2 : รายได้และค่าใช้จ่าย</h5>
+            <h6 class="mb-3 mt-3">*รายได้ที่นอกเหนือจากที่ได้รับจากบิดามารดาหรือทุนการศึกษา*</h6>
+
+            <div class="col-sm-3">
+                <label for="income" class="form-label">รายได้</label>
+                <input type="text" class="form-control" id="income" name="income">
+            </div>
+            <div class="col-sm-9">
+                <label for="incomesource" class="form-label">ที่มาของรายได้</label>
+                <input type="text" class="form-control" id="incomesource" name="incomesource">
+            </div>
+            <div class="col-sm-3">
+                <label for="otherincome" class="form-label">รายได้อื่นๆ</label>
+                <input type="text" class="form-control" id="otherincome" name="otherincome">
+            </div>
+            <div class="col-sm-9">
+                <label for="otherincomesource" class="form-label">ที่มาของรายได้อื่นๆ</label>
+                <input type="text" class="form-control" id="otherincomesource" name="otherincomesource" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label for="debt" class="form-label">หนี้สิน</label>
+                <input type="text" class="form-control" id="debt" name="debt" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <label for="debtsource" class="form-label">ที่มาของหนี้สิน</label>
+                <input type="text" class="form-control" id="debtsource" name="debtsource" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label for="dormfee" class="form-label">ค่าหอพัก</label>
+                <input type="text" class="form-control" id="dormfee" placeholder="" name="dormfee">
+            </div>
+            <div class="col-sm-9"></div>
+
+            <hr class="my-4">
+
+            <h5 class="mb-3 mt-3">ส่วนที่ 3 : ข้อมูลผู้ปกครอง</h5>
+            <div class="col-sm-12">
+                <label for="dadjob" class="form-label">อาชีพของบิดา</label>
+                <input type="text" class="form-control" id="dadjob" name="dadjob"
+                    placeholder='หากไม่ได้ทำงานระบุ "ไม่ได้ทำงาน"' value="" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="dadincome" class="form-label">รายได้ของบิดา</label>
+                <input type="text" class="form-control" id="dadincome" name="dadincome"
+                    placeholder="กรณีค้าขาย ระบุรายได้ที่หักต้นทุนสินค้าแล้ว" value="" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="dadphone" class="form-label">เบอร์โทรศัพท์มือถือของบิดา</label>
+                <input type="text" class="form-control" id="dadphone" placeholder="0XXXXXXXXX" name="dadphone" required>
+                <div class="invalid-feedback">
+                    Valid mobile phone model is required.
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <label for="momjob" class="form-label">อาชีพของมารดา</label>
+                <input type="text" class="form-control" id="momjob" name="momjob"
+                    placeholder='หากไม่ได้ทำงานระบุ "ไม่ได้ทำงาน"' value="" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="momincome" class="form-label">รายได้ของมารดา</label>
+                <input type="text" class="form-control" id="momincome" name="momincome"
+                    placeholder="กรณีค้าขาย ระบุรายได้ที่หักต้นทุนสินค้าแล้ว" value="" required>
+                <div class="invalid-feedback">
+                    Valid income is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="momphone" class="form-label">เบอร์โทรศัพท์มือถือของมารดา</label>
+                <input type="text" class="form-control" id="momphone" placeholder="0XXXXXXXXX" name="momphone" required>
+                <div class="invalid-feedback">
+                    Valid mobile phone model is required.
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <h5> ส่วนที่ 4 : การขอรับทุนการศึกษา</h5>
+
+            <div class="col-sm-12">
+                <label for="reason" class="form-label">เหตุผล</label>
+                <input type="text" class="form-control" id="reason" name="reason" required>
+                <div class="invalid-feedback">
+                    Valid reason is required.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="file">
+            </div>
+
+            <div class="col-md-12">
+                <label for="needlevel" class="form-label">ระบุระดับของความจำเป็นในการรับทุน</label>
+                <small class="text-muted"><br>(1 หมายถึงให้ทุนกับนิสิตอื่นที่ลำบากกว่าได้, 10 หมายถึง ถ้าไม่ได้ทุน
+                    จะไม่สามารถเรียนต่อได้)</small>
+                <input type="range" class="form-range" min="1" max="10" step="1" id="needLevel" name="needLevel"
+                    oninput="this.nextElementSibling.value = this.value">
+                <output>6</output>
+            </div>
+            <button class="w-25 btn btn-primary btn-lg" type="submit">บันทึกข้อมูล</button>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock contentdetail %}
+
+<script>
+    document.registrationForm.ageInputId.oninput = function () {
+        document.registrationForm.ageOutputId.value = document.registrationForm.ageInputId.value;
+    }
+</script>

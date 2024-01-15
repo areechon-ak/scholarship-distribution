@@ -1,0 +1,52 @@
+{% extends 'scholarship_template/base.html' %}
+
+{% block contentheader %}
+<header class="border-bottom">
+    <div class="container d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+        </ul>
+    </div>
+</header>
+{% endblock contentheader %}
+
+{% block contentdetail %}
+
+<style>
+    .form-signin {
+        max-width: 330px !important;
+    }
+</style>
+
+<main class="form-signin w-100 m-auto text-center">
+    <img class="mb-4 mt-5"
+        src="https://surveymonkey-assets.s3.amazonaws.com/survey/186158684/769c82dc-67b6-44d9-afa9-4a3d041a81bb.jpg"
+        alt="cbs logo" width="82" height="67">
+    <h4 class="h4 mb-3 fw-normal"><b>For Student</b></h4>
+    <h5 class="h5 mb-3 fw-normal">please log in</h5>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-floating">
+            <input type="text" class="form-control" id="myStudentID" name="myStudentID" placeholder="Student ID">
+            <label for="floatingInput">Student ID</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="myPassword" name="myPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="mb-3 mt-1">
+            <p> Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+    {% if returnMessage %}
+    <p class="fs-5 text-muted">
+        {{ returnMessage }}
+    </p>
+    {% endif %}
+</main>
+{% endblock contentdetail %}

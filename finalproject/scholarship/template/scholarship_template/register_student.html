@@ -1,0 +1,92 @@
+{% extends 'scholarship_template/base.html' %}
+
+{% block contentheader %}
+<header class="border-bottom">
+    <div class="container d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+        </ul>
+    </div>
+</header>
+{% endblock contentheader %}
+
+{% block contentdetail %}
+
+<style>
+    .form-signin {
+        max-width: 330px !important;
+    }
+</style>
+
+<main class="form-signin w-100 m-auto text-center">
+    <img class="mb-4 mt-5"
+        src="https://surveymonkey-assets.s3.amazonaws.com/survey/186158684/769c82dc-67b6-44d9-afa9-4a3d041a81bb.jpg"
+        alt="cbs logo" width="82" height="67">
+    {% if returnMessage %}
+    <h1 class="h3 mb-3 fw-normal">
+        {{ returnMessage }}
+    </h1>
+    <a class="w-100 btn btn-lg btn-secondary" href="{% url 'login_student' %}"> ไปหน้า Sign In</a>
+    {% else %}
+    <h4 class="h4 mb-3 fw-normal"><b>For Student</b></h4>
+    <h5 class="h5 mb-3 fw-normal">register for new account</h5>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Major</label>
+            </div>
+            <select class="custom-select" id="myMajor" name="myMajor">
+                <option selected>Choose...</option>
+                <option value="การบัญชี">การบัญชี</option>
+                <option value="สถิติ-สถิติประยุกต์">สถิติ-สถิติประยุกต์</option>
+                <option value="สถิติ-สถิติคณิตศาสตร์">สถิติ-สถิติคณิตศาสตร์</option>
+                <option value="สถิติ-เทคโนโลยีสารสนเทศเพื่อธุรกิจ">สถิติ-เทคโนโลยีสารสนเทศเพื่อธุรกิจ</option>
+                <option value="สถิติ-ประกันภัย">สถิติ-ประกันภัย</option>
+                <option value="บริหาร-การตลาด">บริหาร-การตลาด</option>
+                <option value="บริหาร-การธนาคารและการเงิน">บริหาร-การธนาคารและการเงิน</option>
+                <option value="บริหาร-ระบบสารสนเทศทางการจัดการ">บริหาร-ระบบสารสนเทศทางการจัดการ</option>              
+            </select>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="myStudentID" name='myStudentID' placeholder="Student ID"
+                required>
+            <label for="floatingInput">Student ID</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="myFirstName" name="myFirstName" placeholder="First Name"
+                required>
+            <label for="floatingInput">First Name</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="myLastName" name="myLastName" placeholder="Last Name" required>
+            <label for="floatingInput">Last Name</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="myPhone" name="myPhone" placeholder="Phone Number" required>
+            <label for="floatingInput">Phone Number</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="email" class="form-control" id="myEmail" name="myEmail" placeholder="Email" required>
+            <label for="floatingInput">Email</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="myPassword" name="myPassword" placeholder="Password"
+                required>
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    </form>
+    {% endif %}
+</main>
+{% endblock contentdetail %}

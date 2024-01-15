@@ -1,0 +1,69 @@
+{% extends 'scholarship_template/base.html' %}
+
+{% block contentheader %}
+<header class="border-bottom">
+    <div class="container d-flex justify-content-center py-3">
+        <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"></div>
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home_teacher' %}" class="nav-link active" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+        </ul>
+        <div class="col-md-3 text-end">
+            <a href="{% url 'login_committee' %}" role="button" class="btn btn-outline-secondary me-2">Log out</a>
+        </div>
+
+    </div>
+</header>
+{% endblock contentheader %}
+
+{% block contentdetail %}
+<main>
+    <!-- <div align="right" class="mx-5 mt-3">
+        <input type="text" class="form-control" id="search" placeholder="Search..">
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    </div> -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <div align="right" class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..">
+                    <button class="btn btn-outline-secondary" type="button">Submit</button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Major</th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in StudentList %}
+                <tr>
+                    <th scope="row"> {{ forloop.counter }} </th>
+                    <td> {{ student.studentID }} </td>
+                    <td> {{ student.firstname }} </td>
+                    <td> {{ student.lastname }} </td>
+                    <td> {{ student.major }}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">View</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{% endblock contentdetail %}

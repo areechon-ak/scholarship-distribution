@@ -1,0 +1,43 @@
+<!-- rgba(190,184,170,255)
+#beb8aa -->
+<style>
+    /* .exampletwo {
+     background-color: rgba(190,184,170,255);
+     color: rgb(255, 255, 204);
+ }  */
+ </style>
+ 
+ 
+ {% extends 'scholarship_template/base.html' %}
+ 
+ {% block contentheader %}
+ <header class="border-bottom">
+     <div class="container d-flex justify-content-center py-3">
+         <ul class="nav nav-pills">
+             <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Home</a></li>
+             <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
+             <li class="nav-item"><a href="#" class="nav-link link-dark">Scholarship</a></li>
+             <li class="nav-item"><a href="#" class="nav-link link-dark">FAQs</a></li>
+             <li class="nav-item"><a href="#" class="nav-link link-dark">Contact</a></li>
+         </ul>
+     </div>
+ </header>
+ {% endblock contentheader %}
+ 
+ {% block contentdetail %}
+ <!-- <header class="mb-auto"></header> -->
+     <!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center"> -->
+     <div class="text-center">
+         <main class="px-5 mt-5 mb-5">
+             <!-- <h1>Cover your page.</h1> -->
+             <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.6435-9/76171525_2444324675843484_7416236865998553088_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=aVoMSFpn0pEAX_5MYzC&_nc_ht=scontent.fbkk30-1.fna&oh=00_AfAHnec2GG9ABFSF04-vtnFUulPBOyO_9uAu4fZsrgYSbQ&oe=63BB821D" class="img-fluid">
+             <!-- <p class="lead">“เจ้านายราชตระกูล ตั้งแต่ลูกฉันเปนต้นลงไป<br> ตลอดจนถึงราษฎรที่ต่ำที่สุด<br>จะให้ได้มีโอกาสเล่าเรียนได้เสมอกัน"<br> <br><br>พระราชประณิทานในพระบาทสมเด็กพระจุลจอมเกล้าเจ้าอยู่หัว<br></p> -->
+             <p class="lead">
+             <br/>
+             <a href="{% url 'login_student' %}" class="btn btn-lg btn-secondary fw-bold border-black bg-black mx-2 col-2">Student Log in</a>
+             <a href="{% url 'login_committee' %}" class="btn btn-lg btn-secondary border-black bg-black mx-2 col-2">Committee Log in</a>
+             </p>
+         </main>
+     </div>
+ 
+ {% endblock contentdetail %}
